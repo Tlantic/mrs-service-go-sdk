@@ -142,6 +142,7 @@
       <root url="file://$PROJECT_DIR$/../mrs-integration-utils/vendor/golang.org/x/crypto/.git" />
       <root url="file://$PROJECT_DIR$/../mrs-integration-services/vendor/github.com/BurntSushi/toml/_examples" />
       <root url="file://$PROJECT_DIR$/../sample-oauth/.idea" />
+      <root url="file://$PROJECT_DIR$/.git" />
       <root url="file://$PROJECT_DIR$/../mrs-integration-core-plugin/vendor/gopkg.in/yaml.v2/.git" />
       <root url="file://$PROJECT_DIR$/../mrs-event-sourcing/vendor/github.com/couchbase/goutils/.git" />
       <root url="file://$PROJECT_DIR$/../mrs-integration-api-gateway/vendor/github.com/spf13/cast/.git" />

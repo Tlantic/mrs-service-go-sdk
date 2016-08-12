@@ -12,6 +12,7 @@ type Client struct {
 	Application   	string
 	BaseApi		string
 	Log      	io.Writer
+	AppId		string
 }
 
 type TokenResponse struct {

@@ -11,7 +11,7 @@ import (
 	"errors"
 )
 
-func NewClient(endpoint string,  organization string, application string) (*Client, error){
+func NewClient(endpoint string,  organization string, application string, appId string) (*Client, error){
 	if(organization == "" || application == ""){
 		return &Client{}, errors.New("ORGANIZATION_OR_APPLICATION_IS_EMPTY")
 	}
@@ -22,6 +22,7 @@ func NewClient(endpoint string,  organization string, application string) (*Clie
 		application,
 		endpoint,
 		nil,
+		appId,
 	}, nil
 }
 
