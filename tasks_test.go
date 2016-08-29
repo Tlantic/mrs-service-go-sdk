@@ -2,6 +2,7 @@ package mrs_service_go_sdk
 
 import (
 	"testing"
+	"github.com/Tlantic/mrs-service-go-sdk/tasks/models"
 )
 
 
@@ -48,3 +49,29 @@ func TestGetTasks(t *testing.T) {
 
 }
 
+
+func TestCreateTask(t *testing.T) {
+
+	cl, err := NewClient("http://52.50.91.27:8067","tlantic", "instore", "489a598e-259c-4e25-974e-5de00b29f707")
+	if err != nil {
+		t.Errorf( err.Error())
+	}
+
+	tasks, err := cl.CreateTask(&models.Task{
+
+	})
+
+	if  err != nil{
+		t.Errorf( err.Error())
+	}
+
+	t.Log(tasks.Result)
+
+	if(len(tasks.Result)>0){
+		task := tasks.Result[0]
+		t.Log(task.TaskName)
+		t.Log(task.Items)
+	}
+
+
+}
