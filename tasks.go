@@ -1,6 +1,5 @@
 package mrs_service_go_sdk
 
-
 import (
 	"net/http"
 	"fmt"
@@ -8,15 +7,15 @@ import (
 	"github.com/Tlantic/mrs-service-go-sdk/tasks/models"
 )
 
-const  TASKS_MODULE_NAME  = "tasks"
+const TASKS_MODULE_NAME = "tasks"
 
 // Retrieves a task summary
 func (c *Client) Summary() (*models.TaskSummary, error) {
 	p := models.TaskSummary{}
 
-	url := fmt.Sprintf("%s/%s", c.BaseApi, createPath(c.Organization, c.Application,"summary"))
+	url := fmt.Sprintf("%s/%s", c.BaseApi, createPath(c.Organization, c.Application, "summary"))
 
-	req, err := http.NewRequest("GET", url	, nil)
+	req, err := http.NewRequest("GET", url, nil)
 	req.Header.Set("mrs-application-id", c.AppId)
 
 	if err != nil {
@@ -27,7 +26,6 @@ func (c *Client) Summary() (*models.TaskSummary, error) {
 	if err != nil {
 		return &p, err
 	}
-
 
 	return &p, nil
 }
@@ -40,7 +38,7 @@ func (c *Client) GetTasks(items bool) (*models.TasksRequest, error) {
 
 	url := fmt.Sprintf("%s/%s", c.BaseApi, createPath(c.Organization, c.Application, fmt.Sprintf("?items=%t", items)))
 
-	req, err := http.NewRequest("GET", url	, nil)
+	req, err := http.NewRequest("GET", url, nil)
 	req.Header.Set("mrs-application-id", c.AppId)
 
 	if err != nil {
@@ -52,17 +50,43 @@ func (c *Client) GetTasks(items bool) (*models.TasksRequest, error) {
 		return &p, err
 	}
 
+	return &p, nil
+}
 
+func (c *Client) GetTaskById(taskUId string, items bool) (*models.TaskRequest, error) {
+	p := models.TaskRequest{}
+
+	url := fmt.Sprintf("%s/%s", c.BaseApi, createPath(c.Organization, c.Application, fmt.Sprintf("%s?items=%t", taskUId, items)))
+
+	fmt.Print(url)
+
+	req, err := http.NewRequest("GET", url, nil)
+	req.Header.Set("mrs-application-id", c.AppId)
+
+	if err != nil {
+		return &p, err
+	}
+
+	err = c.Send(req, &p)
+	if err != nil {
+		return &p, err
+	}
+
+	if (p.Result.TaskType == "checklist") {
+		p.Result.ItemType = models.ChecklistTaskItem{}
+	} else {
+		p.Result.ItemType = models.ProductTaskItem{}
+	}
 	return &p, nil
 }
 
 // Create a task and its items.
-func (c *Client) CreateTask( task *models.Task ) (*models.TasksRequest, error) {
+func (c *Client) CreateTask(task *models.Task) (*models.TasksRequest, error) {
 	p := models.TasksRequest{}
 
 	url := fmt.Sprintf("%s/%s", c.BaseApi, createPath(c.Organization, c.Application, ""))
 
-	req, err := http.NewRequest("POST", url	, nil)
+	req, err := http.NewRequest("POST", url, nil)
 	req.Header.Set("mrs-application-id", c.AppId)
 
 	if err != nil {
@@ -74,11 +98,10 @@ func (c *Client) CreateTask( task *models.Task ) (*models.TasksRequest, error) {
 		return &p, err
 	}
 
-
 	return &p, nil
 }
 
-func createPath(org, app, extra string) string{
+func createPath(org, app, extra string) string {
 	return fmt.Sprintf("%s/orgs/%s/apps/%s/%s/%s", TASKS_MODULE_NAME, org, app, TASKS_MODULE_NAME, extra)
 }
 

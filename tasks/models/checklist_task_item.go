@@ -1,6 +1,6 @@
 package models
 
-type ChecklistTaskItem_v1 struct {
+type ChecklistTaskItem struct {
 
 	UniqueId			  	string						`json:"_uId"`
 	ApplicationId 			string						`json:"applicationId"`
@@ -15,22 +15,22 @@ type ChecklistTaskItem_v1 struct {
 }
 
 
-func ( item *ChecklistTaskItem_v1  ) GetUniqueId() string {
+func ( item *ChecklistTaskItem  ) GetUniqueId() string {
 	return item.UniqueId
 }
 
-func ( item *ChecklistTaskItem_v1  ) GetItemId() string {
+func ( item *ChecklistTaskItem  ) GetItemId() string {
 	return item.ItemId
 }
 
-func ( item *ChecklistTaskItem_v1  ) GetType() string {
+func ( item *ChecklistTaskItem  ) GetType() string {
 	return item.Type
 }
 
-func ( item *ChecklistTaskItem_v1  ) GetStatus() string {
+func ( item *ChecklistTaskItem  ) GetStatus() string {
 	return item.Status
 }
 
-func ( item *ChecklistTaskItem_v1  ) GetStartDate() int {
+func ( item *ChecklistTaskItem  ) GetStartDate() int {
 	return item.StartDate
 }

@@ -27,5 +27,5 @@ type Task struct {
 	CreateDate 			int 				`json:"_createDate"`
 	UpdateUser 			string 				`json:"_updateUser"`
 	CreateUser 			string 				`json:"_createUser"`
-
+	ItemType			interface{}                     `json:"itemType"`
 }

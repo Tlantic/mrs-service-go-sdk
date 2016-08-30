@@ -2,7 +2,7 @@ package models
 
 import "github.com/Tlantic/mrs-service-go-sdk/catalog/models"
 
-type ProductTaskItem_v1 struct {
+type ProductTaskItem struct {
 
 	UniqueId			  	string						`json:"_uId"`
 	ApplicationId 			string						`json:"applicationId"`
@@ -40,30 +40,30 @@ type ProductTaskItem_v1 struct {
 }
 
 
-func ( item *ProductTaskItem_v1  ) GetUniqueId() string {
-	return item.UniqueId
+func ( item *ProductTaskItem  ) GetUniqueId() string {
+return item.UniqueId
 }
 
-func ( item *ProductTaskItem_v1  ) GetItemId() string {
+func ( item *ProductTaskItem  ) GetItemId() string {
 	return item.ItemId
 }
 
-func ( item *ProductTaskItem_v1  ) GetItemEAN() string {
+func ( item *ProductTaskItem  ) GetItemEAN() string {
 	return item.ItemEAN
 }
 
-func ( item *ProductTaskItem_v1  ) GetName() string {
+func ( item *ProductTaskItem  ) GetName() string {
 	return item.ItemEAN
 }
 
-func ( item *ProductTaskItem_v1  ) GetType( ) string {
+func ( item *ProductTaskItem  ) GetType( ) string {
 	return item.Type
 }
 
-func ( item *ProductTaskItem_v1  ) GetStatus() string {
+func ( item *ProductTaskItem  ) GetStatus() string {
 	return item.Status
 }
 
-func ( item *ProductTaskItem_v1  ) GetStartDate() int {
+func ( item *ProductTaskItem  ) GetStartDate() int {
 	return item.StartDate
 }
