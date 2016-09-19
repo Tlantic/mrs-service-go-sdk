@@ -1,18 +1,17 @@
 package mrs_service_go_sdk
 
 import (
-
-	"net/http"
+	"bytes"
+	"encoding/json"
+	"errors"
 	"io"
 	"io/ioutil"
-	"encoding/json"
+	"net/http"
 	"net/http/httputil"
-	"bytes"
-	"errors"
 )
 
-func NewClient(endpoint string,  organization string, application string, appId string) (*Client, error){
-	if(organization == "" || application == ""){
+func NewClient(endpoint string, organization string, application string, headers map[string]string) (*Client, error) {
+	if organization == "" || application == "" {
 		return &Client{}, errors.New("ORGANIZATION_OR_APPLICATION_IS_EMPTY")
 	}
 
@@ -22,7 +21,7 @@ func NewClient(endpoint string,  organization string, application string, appId 
 		application,
 		endpoint,
 		nil,
-		appId,
+		headers,
 	}, nil
 }
 
@@ -71,7 +70,6 @@ func (c *Client) Send(req *http.Request, v interface{}) error {
 	return nil
 }
 
-
 func (c *Client) NewRequest(method, url string, payload interface{}) (*http.Request, error) {
 	var buf io.Reader
 	if payload != nil {
@@ -84,7 +82,6 @@ func (c *Client) NewRequest(method, url string, payload interface{}) (*http.Requ
 	}
 	return http.NewRequest(method, url, buf)
 }
-
 
 func (c *Client) log(req *http.Request, resp *http.Response) {
 	if c.Log != nil {
