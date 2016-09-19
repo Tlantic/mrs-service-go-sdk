@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+
 type Task struct {
 
 	Id 							string 					`json:"_uId" validate:"nonzero"`
@@ -25,16 +26,17 @@ type Task struct {
 
 	// Description Data
 	TaskType					string					`json:"taskType" validate:"nonzero"`
-	TaskName					string					`json:"taskName" validate:"nonzero"`
-	TaskName_gb					string					`json:"taskName_gb,omitempty" validate:"nonzero"`
-	TaskName_pt					string					`json:"taskName_es,omitempty" validate:"nonzero"`
-	TaskName_es					string					`json:"taskName_es,omitempty" validate:"nonzero"`
-	TaskName_de					string					`json:"taskName_de,omitempty" validate:"nonzero"`
-	TaskName_us					string					`json:"taskName_us,omitempty" validate:"nonzero"`
-	TaskName_br					string					`json:"taskName_br,omitempty" validate:"nonzero"`
-	TaskName_ve					string					`json:"taskName_ve,omitempty" validate:"nonzero"`
 
-	Description					string					`json:"description" validate:"nonzero"`
+	Name						string					`json:"name"`
+	Name_gb						string					`json:"name_gb,omitempty" validate:"nonzero"`
+	Name_pt						string					`json:"name_es,omitempty" validate:"nonzero"`
+	Name_es						string					`json:"name_es,omitempty" validate:"nonzero"`
+	Name_de						string					`json:"name_de,omitempty" validate:"nonzero"`
+	Name_us						string					`json:"name_us,omitempty" validate:"nonzero"`
+	Name_br						string					`json:"name_br,omitempty" validate:"nonzero"`
+	Name_ve						string					`json:"name_ve,omitempty" validate:"nonzero"`
+
+	Description					string					`json:"description"`
 	Description_gb				string					`json:"description_gb,omitempty" validate:"nonzero"`
 	Description_pt				string					`json:"description_es,omitempty" validate:"nonzero"`
 	Description_es				string					`json:"description_es,omitempty" validate:"nonzero"`
@@ -49,6 +51,7 @@ type Task struct {
 	IsReleasable				bool					`json:"isReleasable"`
 	IsMergeable					bool					`json:"isMergeable"`
 	IsOriented					bool					`json:"isOriented"`
+	IsAcceptingItems			bool					`json:"isAcceptingItems"`
 
 	// Variable Data
 	Attributes					map[string]interface{}	`json:"attributes"`
