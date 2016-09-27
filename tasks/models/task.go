@@ -3,14 +3,26 @@ package models
 import "time"
 
 
+type Task_Validations struct {
+	 Errors						map[string]string		`json:"errors"`
+	 Warnings 					map[string]string		`json:"warnings"`
+}
+
 type Task struct {
 
+	// Meta
 	Id 							string 					`json:"_uId" validate:"nonzero"`
 	Type 						string 					`json:"_type"`
+	CreateDate 					time.Time 					`json:"_createDate" validate:"nonzero"`
+	UpdateDate 					time.Time					`json:"_updateDate" validate:"nonzero"`
+	CreateUser 					string 					`json:"_createUser"`
+	UpdateUser 					string 					`json:"_updateUser"`
 	Status						string					`json:"status" validate:"nonzero, min=1, max=2"`
+	ApplicationId 				string 					`json:"applicationId" validate:"nonzero"`
+	OrganizationId 				string 					`json:"organizationId" validate:"nonzero"`
 
-	// Meta Data
-	ApplicationID 				string 					`json:"applicationId" validate:"nonzero"`
+	// (cont.) Meta Data
+
 	SetupId 					string 					`json:"setupId,omitempty" validate:"nonzero"`
 	ParentTaskId 				string 					`json:"parentTaskId,omitempty" validate:"nonzero"`
 	StoreId 					string 					`json:"storeId" validate:"nonzero"`
@@ -18,10 +30,9 @@ type Task struct {
 	ProfileId 					string 					`json:"profileId,omitempty" validate:"nonzero"`
 	DeviceId 					string 					`json:"deviceId,omitempty" validate:"nonzero"`
 	OwnerId 					string 					`json:"ownerId"`
-	UpdateDate 					uint					`json:"_updateDate" validate:"nonzero"`
-	CreateDate 					uint 					`json:"_createDate" validate:"nonzero"`
-	UpdateUser 					string 					`json:"_updateUser"`
-	CreateUser 					string 					`json:"_createUser"`
+
+
+
 
 
 	// Description Data
@@ -48,13 +59,15 @@ type Task struct {
 	// Operational Data
 	Priority					uint					`json:"priority"`
 	ItemLimit					uint					`json:"itemLimit"`
-	IsReleasable				bool					`json:"isReleasable"`
-	IsMergeable					bool					`json:"isMergeable"`
-	IsOriented					bool					`json:"isOriented"`
 	IsAcceptingItems			bool					`json:"isAcceptingItems"`
+	IsReleasable				bool					`json:"isReleasable"`
+	IsReasignable				bool					`json:"isReassignable"`
+	IsOriented					bool					`json:"isOriented"`
+
 
 	// Variable Data
 	Attributes					map[string]interface{}	`json:"attributes"`
+	Validations					Task_Validations		`json:"validations"`
 
 	// Scheduling Data
 	ScheduledDate				time.Time				`json:"scheduledDate" validate:"nonzero"`
