@@ -1,21 +1,24 @@
 package models
 
+import "time"
+
+
 type TaskItem struct {
 
+	// Meta
 	Id 							string 					`json:"_uId" validate:"nonzero"`
 	Type 						string 					`json:"_type"`
-	Status						string					`json:"status" validate:"nonzero, min=1, max=2"`
-
-
-	// Meta Data
-	ApplicationID 				string 					`json:"applicationId" validate:"nonzero"`
-	TaskId		 				string 					`json:"taskId" validate:"nonzero"`
-
-	UpdateDate 					uint					`json:"_updateDate" validate:"nonzero"`
-	CreateDate 					uint 					`json:"_createDate" validate:"nonzero"`
-	UpdateUser 					string 					`json:"_updateUser"`
+	CreateDate 					time.Time 				`json:"_createDate" validate:"nonzero"`
+	UpdateDate 					time.Time				`json:"_updateDate" validate:"nonzero"`
 	CreateUser 					string 					`json:"_createUser"`
+	UpdateUser 					string 					`json:"_updateUser"`
+	Status						string					`json:"status" validate:"nonzero, min=1, max=2"`
+	ApplicationId 				string 					`json:"applicationId" validate:"nonzero"`
 
+
+	// (cont.) Meta Data
+	TaskId		 				string 					`json:"taskId" validate:"nonzero"`
+	ItemType		 			string 					`json:"itemType" validate:"nonzero"`
 
 	// Description Data
 	Name						string					`json:"name" validate:"nonzero"`
@@ -38,8 +41,8 @@ type TaskItem struct {
 
 
 	// Operational Data
-	ItemId                		string 					`json:"itemId"`
+	Observations				[]string				`json:"observations"`
 	StartDate             		int 					`json:"startDate"`
 
-	Attributes				map[string]interface{}		`json:"attributes"`
+	Attributes					map[string]interface{}	`json:"attributes"`
 }

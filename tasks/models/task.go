@@ -13,8 +13,8 @@ type Task struct {
 	// Meta
 	Id 							string 					`json:"_uId" validate:"nonzero"`
 	Type 						string 					`json:"_type"`
-	CreateDate 					time.Time 					`json:"_createDate" validate:"nonzero"`
-	UpdateDate 					time.Time					`json:"_updateDate" validate:"nonzero"`
+	CreateDate 					time.Time 				`json:"_createDate" validate:"nonzero"`
+	UpdateDate 					time.Time				`json:"_updateDate" validate:"nonzero"`
 	CreateUser 					string 					`json:"_createUser"`
 	UpdateUser 					string 					`json:"_updateUser"`
 	Status						string					`json:"status" validate:"nonzero, min=1, max=2"`
@@ -22,7 +22,6 @@ type Task struct {
 	OrganizationId 				string 					`json:"organizationId" validate:"nonzero"`
 
 	// (cont.) Meta Data
-
 	SetupId 					string 					`json:"setupId,omitempty" validate:"nonzero"`
 	ParentTaskId 				string 					`json:"parentTaskId,omitempty" validate:"nonzero"`
 	StoreId 					string 					`json:"storeId" validate:"nonzero"`
