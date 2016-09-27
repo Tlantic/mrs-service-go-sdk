@@ -43,6 +43,6 @@ type TaskSetup struct {
 	TaskDescription_br			string					`json:"description_br,omitempty" validate:"nonzero"`
 	TaskDescription_ve			string					`json:"description_ve,omitempty" validate:"nonzero"`
 
-	Periodicity    				time.Time           	`json:"periodicity"`
+	Periodicity    				string		           	`json:"periodicity"`
 	Attributes      			map[string]interface{} 	`json:"attributes"`
 }
