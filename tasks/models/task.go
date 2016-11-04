@@ -28,8 +28,8 @@ type Task struct {
 
 	ApplicationID      string                                `json:"applicationId"`
 	Type               string                                `json:"_type"`
-	UpdateDate         int                                        `json:"_updateDate"`
-	CreateDate         int                                `json:"_createDate"`
+	UpdateDate         int64                                        `json:"_updateDate"`
+	CreateDate         int64                                `json:"_createDate"`
 	UpdateUser         string                                `json:"_updateUser"`
 	CreateUser         string                                `json:"_createUser"`
 	ItemType           interface{}                     `json:"itemType"`

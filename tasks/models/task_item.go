@@ -9,7 +9,7 @@ type TaskItem struct {
 	Type                  string                                                `json:"type"`
 	Status                string                                        `json:"status"`
 	Observation           string                                                `json:"observation"`
-	StartDate             int                                                `json:"startDate"`
+	StartDate             int64                                                `json:"startDate"`
 
 	ItemId                string                                                `json:"itemId"`
 	ItemEAN               string                                                `json:"itemEAN"`
@@ -17,13 +17,13 @@ type TaskItem struct {
 	ExpirationDate        int                                                `json:"expirationDate"`
 	HierarchyCategory     models.HierarchyCategory        `json:"hierarchyCategory"`
 
-	PosPrice              int                                                `json:"posPrice"`
-	LabelPrice            int                                                `json:"labelPrice"`
-	OldERPPrice           int                                                `json:"oldERPPrice"`
+	PosPrice              float64                                                `json:"posPrice"`
+	LabelPrice            float64                                                `json:"labelPrice"`
+	OldERPPrice           float64                                                `json:"oldERPPrice"`
 	PriceDivergence       bool                                                `json:"priceDivergence"`
 
-	Quantity              int                                                `json:"quantity"`
-	ExpectedQuantity      int                                                `json:"expectedQuantity"`
+	Quantity              float64                                                `json:"quantity"`
+	ExpectedQuantity      float64                                                `json:"expectedQuantity"`
 
 	CheckExpirationDate   bool                                                `json:"checkExpirationDate"`
 
@@ -57,7 +57,7 @@ func ( item *TaskItem  ) GetStatus() string {
 	return item.Status
 }
 
-func ( item *TaskItem  ) GetStartDate() int {
+func ( item *TaskItem  ) GetStartDate() int64 {
 	return item.StartDate
 }
 
