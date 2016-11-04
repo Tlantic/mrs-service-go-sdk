@@ -71,7 +71,6 @@ func (c *Client) Send(req *http.Request, v interface{}) error {
 	return nil
 }
 
-
 func (c *Client) NewRequest(method, url string, payload interface{}) (*http.Request, error) {
 	var buf io.Reader
 	if payload != nil {
