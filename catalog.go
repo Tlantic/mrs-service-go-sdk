@@ -14,17 +14,10 @@ const CATALOG_MODULE_NAME = "catalog"
 // GetSnapshot retrieves a snapshot from the rp for a given product.
 //
 // Whe items is true,  it also retrieves its items.
-func (c *Client) GetSnapshot(product string, storeId string, startDate string, endDate string, adapter string) (*models.SnapshotResponse, error) {
+func (c *Client) GetProductsSnapshot(request models.SnapshotRequest, adapter string) (*models.SnapshotResponse, error) {
 	p := models.SnapshotResponse{}
 
-	url := fmt.Sprintf("%s/%s", c.BaseApi, createServicePath(c.Organization, c.Application, fmt.Sprintf("snapshot/sku?adapter=%s", adapter)))
-
-	request := models.SnapshotRequest{
-		Product: product,
-		StoreId: storeId,
-		StartDate: startDate,
-		EndDate: endDate,
-	}
+	url := fmt.Sprintf("%s/%s", c.BaseApi, createServicePath(c.Organization, c.Application, fmt.Sprintf("snapshot/products?adapter=%s", adapter)))
 
 	jsonStr, err := json.Marshal(request)
 
@@ -44,8 +37,6 @@ func (c *Client) GetSnapshot(product string, storeId string, startDate string, e
 	if err != nil {
 		return &p, err
 	}
-
-	fmt.Println(&p)
 	return &p, nil
 }
 

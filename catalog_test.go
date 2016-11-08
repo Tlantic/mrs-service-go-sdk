@@ -3,6 +3,8 @@ package mrs_service_go_sdk
 import (
 	"testing"
 	"fmt"
+	"time"
+	"github.com/Tlantic/mrs-service-go-sdk/catalog/models"
 )
 
 func TestGetSnapshot(t *testing.T) {
@@ -13,7 +15,23 @@ func TestGetSnapshot(t *testing.T) {
 		t.Errorf(err.Error())
 	}
 
-	resp, err := cl.GetSnapshot("12754", "S0002", "08-11-2016", "08-11-2016", "cockpit-adapter")
+	startDate := time.Now().Format("02-01-2006")
+	endDate := startDate
+
+	//products := [2]string{"24649", "246972"}
+
+	request := models.SnapshotRequest{
+		StoreId: "S0001",
+		StartDate: startDate,
+		EndDate: endDate,
+	}
+
+	request.Products = append(request.Products, "24649")
+	request.Products = append(request.Products, "246972")
+
+	fmt.Println(startDate)
+
+	resp, err := cl.GetProductsSnapshot(request, "cockpit-adapter")
 
 	if err != nil {
 		t.Errorf(err.Error())

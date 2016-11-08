@@ -1,7 +1,7 @@
 package models
 
 type SnapshotRequest struct {
-	Product   string               `json:"product"`
+	Products  []string               `json:"products"`
 	StoreId   string                 `json:"storeId"`
 	StartDate string                 `json:"startDate"`
 	EndDate   string                 `json:"endDate"`
@@ -9,7 +9,7 @@ type SnapshotRequest struct {
 
 type SnapshotResponse struct {
 	Status string `json:"status"`
-	Result Snapshot `json:"result"`
+	Result map[string]Snapshot `json:"result"`
 }
 
 type Snapshot struct {
