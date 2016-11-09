@@ -1,15 +1,27 @@
 package models
 
-type SnapshotRequest struct {
+type SnapshotsRequest struct {
 	Products  []string               `json:"products"`
 	StoreId   string                 `json:"storeId"`
 	StartDate string                 `json:"startDate"`
 	EndDate   string                 `json:"endDate"`
 }
 
-type SnapshotResponse struct {
+type SnapshotRequest struct {
+	Product   string               `json:"product"`
+	StoreId   string                 `json:"storeId"`
+	StartDate string                 `json:"startDate"`
+	EndDate   string                 `json:"endDate"`
+}
+
+type SnapshotsResponse struct {
 	Status string `json:"status"`
 	Result map[string]Snapshot `json:"result"`
+}
+
+type SnapshotResponse struct {
+	Status string `json:"status"`
+	Result Snapshot `json:"result"`
 }
 
 type Snapshot struct {
